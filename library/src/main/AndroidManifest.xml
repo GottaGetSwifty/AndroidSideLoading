@@ -17,8 +17,7 @@
 
         <activity
             android:name=".activities.SideLoadActivity"
-            android:theme="@style/MainTheme"
-            android:label="@string/library_name" >
+            android:theme="@style/MainTheme">
         </activity>
 
         <activity

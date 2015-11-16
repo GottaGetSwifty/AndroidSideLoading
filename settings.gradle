@@ -1,1 +1,1 @@
-include ':fileexplorer', ':library'
+include ':library'

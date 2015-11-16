@@ -17,7 +17,7 @@
  *  along with aFileDialog. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.github.peejweej.fileexplorer.view;
+package com.github.peejweej.androidsideloading.file.view;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -26,7 +26,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.github.peejweej.fileexplorer.R;
+
+import com.github.peejweej.androidsideloading.R;
 
 import java.io.File;
 import java.util.LinkedList;

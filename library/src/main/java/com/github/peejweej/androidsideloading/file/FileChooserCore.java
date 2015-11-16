@@ -17,7 +17,7 @@
  *  along with aFileDialog. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.github.peejweej.fileexplorer;
+package com.github.peejweej.androidsideloading.file;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -29,7 +29,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-import com.github.peejweej.fileexplorer.view.FileItem;
+import com.github.peejweej.androidsideloading.R;
+import com.github.peejweej.androidsideloading.file.view.FileItem;
 
 import java.io.File;
 import java.util.Arrays;
@@ -48,76 +49,76 @@ class FileChooserCore {
 	 * The file chooser in which all the operations are performed.
 	 */
 	private FileChooser chooser;
-	
+
 	/**
 	 * The listeners for the event of select a file.
 	 */
 	private List<OnFileSelectedListener> listeners;
-	
+
 	/**
 	 * A regular expression for filter the files.
 	 */
 	private String filter;
-	
+
 	/**
 	 * A boolean indicating if only the files that can be selected (they pass the filter) must be show.
 	 */
 	private boolean showOnlySelectable;
-	
+
 	/**
 	 * A boolean indicating if the user can create files.
 	 */
 	private boolean canCreateFiles;
-	
+
 	/**
 	 * A boolean indicating if the chooser is going to be used to select folders.
 	 */
 	private boolean folderMode;
-	
+
 	/**
 	 * A file that indicates the folder that is currently being displayed.
 	 */
 	private File currentFolder;
-	
+
 	/**
 	 * This attribut allows to override the default value of the labels.
 	 */
 	private FileChooserLabels labels;
-	
+
 	/**
 	 * A boolean that indicates if a confirmation dialog must be displaying when selecting a file.
 	 */
 	private boolean showConfirmationOnSelect;
-	
+
 	/**
 	 * A boolean that indicates if a confirmation dialog must be displaying when creating a file.
 	 */
 	private boolean showConfirmationOnCreate;
-	
+
 	/**
 	 * A boolean indicating if the folder's full path must be show in the title.
 	 */
 	private boolean showFullPathInTitle;
-	
+
 	// ---- Static attributes ----- //
-	
+
 	/**
 	 * Static attribute for save the folder displayed by default.
 	 */
 	private static File defaultFolder;
-	
+
 	/**
 	 * Static constructor.
 	 */
 	static {
 		defaultFolder = null;
 	}
-	
+
 	// ----- Constructor ----- //
-	
+
 	/**
 	 * Creates an instance of this class.
-	 * 
+	 *
 	 * @param fileChooser The graphical file chooser.
 	 */
 	public FileChooserCore(FileChooser fileChooser) {
@@ -302,9 +303,9 @@ class FileChooserCore {
 			alert.setPositiveButton(posButton, new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int whichButton) {
 					// Notify to listeners.
-					for(int i=0; i<FileChooserCore.this.listeners.size(); i++) {
+					for(int i=0; i< FileChooserCore.this.listeners.size(); i++) {
 						if(creation) {
-							FileChooserCore.this.listeners.get(i).onFileSelected(file, name);				
+							FileChooserCore.this.listeners.get(i).onFileSelected(file, name);
 						} else {
 							FileChooserCore.this.listeners.get(i).onFileSelected(file);
 						}
@@ -321,9 +322,9 @@ class FileChooserCore {
 			alert.show();
 		} else {
 			// Notify to listeners.
-			for(int i=0; i<FileChooserCore.this.listeners.size(); i++) {
+			for(int i=0; i< FileChooserCore.this.listeners.size(); i++) {
 				if(creation) {
-					FileChooserCore.this.listeners.get(i).onFileSelected(file, name);				
+					FileChooserCore.this.listeners.get(i).onFileSelected(file, name);
 				} else {
 					FileChooserCore.this.listeners.get(i).onFileSelected(file);
 				}
@@ -545,7 +546,7 @@ class FileChooserCore {
 			if(this.currentFolder.getParent() != null) {
 				File parent = new File(this.currentFolder.getParent());
 				if(parent.exists()) {
-					fileItems.add(new FileItem(this.chooser.getContext(), parent, ".."));					
+					fileItems.add(new FileItem(this.chooser.getContext(), parent, ".."));
 				}
 			}
 			
