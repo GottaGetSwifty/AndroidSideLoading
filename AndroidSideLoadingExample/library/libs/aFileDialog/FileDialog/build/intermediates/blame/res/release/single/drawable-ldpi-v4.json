@@ -1,0 +1,30 @@
+[
+    {
+        "merged": "/Users/Fechner/Documents/Android/UW/app/app/libs/aFileDialog/FileDialog/build/intermediates/bundles/release/res/drawable-ldpi-v4/folder.png",
+        "source": "/Users/Fechner/Documents/Android/UW/app/app/libs/aFileDialog/FileDialog/src/main/res/drawable-ldpi/folder.png"
+    },
+    {
+        "merged": "/Users/Fechner/Documents/Android/UW/app/app/libs/aFileDialog/FileDialog/build/intermediates/bundles/release/res/drawable-ldpi-v4/tick.png",
+        "source": "/Users/Fechner/Documents/Android/UW/app/app/libs/aFileDialog/FileDialog/src/main/res/drawable-ldpi/tick.png"
+    },
+    {
+        "merged": "/Users/Fechner/Documents/Android/UW/app/app/libs/aFileDialog/FileDialog/build/intermediates/bundles/release/res/drawable-ldpi-v4/document_gray.png",
+        "source": "/Users/Fechner/Documents/Android/UW/app/app/libs/aFileDialog/FileDialog/src/main/res/drawable-ldpi/document_gray.png"
+    },
+    {
+        "merged": "/Users/Fechner/Documents/Android/UW/app/app/libs/aFileDialog/FileDialog/build/intermediates/bundles/release/res/drawable-ldpi-v4/add.png",
+        "source": "/Users/Fechner/Documents/Android/UW/app/app/libs/aFileDialog/FileDialog/src/main/res/drawable-ldpi/add.png"
+    },
+    {
+        "merged": "/Users/Fechner/Documents/Android/UW/app/app/libs/aFileDialog/FileDialog/build/intermediates/bundles/release/res/drawable-ldpi-v4/document.png",
+        "source": "/Users/Fechner/Documents/Android/UW/app/app/libs/aFileDialog/FileDialog/src/main/res/drawable-ldpi/document.png"
+    },
+    {
+        "merged": "/Users/Fechner/Documents/Android/UW/app/app/libs/aFileDialog/FileDialog/build/intermediates/bundles/release/res/drawable-ldpi-v4/no.png",
+        "source": "/Users/Fechner/Documents/Android/UW/app/app/libs/aFileDialog/FileDialog/src/main/res/drawable-ldpi/no.png"
+    },
+    {
+        "merged": "/Users/Fechner/Documents/Android/UW/app/app/libs/aFileDialog/FileDialog/build/intermediates/bundles/release/res/drawable-ldpi-v4/ic_launcher.png",
+        "source": "/Users/Fechner/Documents/Android/UW/app/app/libs/aFileDialog/FileDialog/src/main/res/drawable-ldpi/ic_launcher.png"
+    }
+]

@@ -1,0 +1,30 @@
+[
+    {
+        "merged": "/Users/Fechner/Documents/Android/UW/app/app/libs/aFileDialog/FileDialog/build/intermediates/res/merged/androidTest/debug/drawable-mdpi-v4/document.png",
+        "source": "/Users/Fechner/Documents/Android/UW/app/app/libs/aFileDialog/FileDialog/build/intermediates/bundles/debug/res/drawable-mdpi-v4/document.png"
+    },
+    {
+        "merged": "/Users/Fechner/Documents/Android/UW/app/app/libs/aFileDialog/FileDialog/build/intermediates/res/merged/androidTest/debug/drawable-mdpi-v4/folder.png",
+        "source": "/Users/Fechner/Documents/Android/UW/app/app/libs/aFileDialog/FileDialog/build/intermediates/bundles/debug/res/drawable-mdpi-v4/folder.png"
+    },
+    {
+        "merged": "/Users/Fechner/Documents/Android/UW/app/app/libs/aFileDialog/FileDialog/build/intermediates/res/merged/androidTest/debug/drawable-mdpi-v4/document_gray.png",
+        "source": "/Users/Fechner/Documents/Android/UW/app/app/libs/aFileDialog/FileDialog/build/intermediates/bundles/debug/res/drawable-mdpi-v4/document_gray.png"
+    },
+    {
+        "merged": "/Users/Fechner/Documents/Android/UW/app/app/libs/aFileDialog/FileDialog/build/intermediates/res/merged/androidTest/debug/drawable-mdpi-v4/add.png",
+        "source": "/Users/Fechner/Documents/Android/UW/app/app/libs/aFileDialog/FileDialog/build/intermediates/bundles/debug/res/drawable-mdpi-v4/add.png"
+    },
+    {
+        "merged": "/Users/Fechner/Documents/Android/UW/app/app/libs/aFileDialog/FileDialog/build/intermediates/res/merged/androidTest/debug/drawable-mdpi-v4/tick.png",
+        "source": "/Users/Fechner/Documents/Android/UW/app/app/libs/aFileDialog/FileDialog/build/intermediates/bundles/debug/res/drawable-mdpi-v4/tick.png"
+    },
+    {
+        "merged": "/Users/Fechner/Documents/Android/UW/app/app/libs/aFileDialog/FileDialog/build/intermediates/res/merged/androidTest/debug/drawable-mdpi-v4/no.png",
+        "source": "/Users/Fechner/Documents/Android/UW/app/app/libs/aFileDialog/FileDialog/build/intermediates/bundles/debug/res/drawable-mdpi-v4/no.png"
+    },
+    {
+        "merged": "/Users/Fechner/Documents/Android/UW/app/app/libs/aFileDialog/FileDialog/build/intermediates/res/merged/androidTest/debug/drawable-mdpi-v4/ic_launcher.png",
+        "source": "/Users/Fechner/Documents/Android/UW/app/app/libs/aFileDialog/FileDialog/build/intermediates/bundles/debug/res/drawable-mdpi-v4/ic_launcher.png"
+    }
+]
