@@ -14,13 +14,13 @@ import android.widget.TextView;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 
-import ar.com.daidalos.afiledialog.FileChooserDialog;
 import com.github.peejweej.androidsideloading.R;
 import com.github.peejweej.androidsideloading.fragments.SideLoadTypeChoosingFragment;
 import com.github.peejweej.androidsideloading.model.SideLoadInformation;
 import com.github.peejweej.androidsideloading.model.SideLoadType;
 import com.github.peejweej.androidsideloading.utilities.FileUtilities;
 import com.github.peejweej.androidsideloading.wifiDirect.WiFiDirectActivity;
+import com.github.peejweej.fileexplorer.FileChooserDialog;
 
 public class SideShareActivity extends BaseActivity implements SideLoadTypeChoosingFragment.SideLoadTypeFragmentListener{
 
@@ -234,7 +234,7 @@ public class SideShareActivity extends BaseActivity implements SideLoadTypeChoos
         FileUtilities.saveFileToSdCard(getApplicationContext(), getFileBytes(), sideLoadInformation.fileName);
 
         String fileDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/"
-                + getApplicationContext().getString(R.string.app_name);
+                + getApplicationContext().getString(R.string.library_name);
         showSuccessAlert(true, fileDir);
     }
 

@@ -1,2 +1,1 @@
-include ':library', ':example', ':FileDialog'
-project(':FileDialog').projectDir = new File('library/libs/aFileDialog/FileDialog')
+include ':library', ':example', ':fileexplorer'

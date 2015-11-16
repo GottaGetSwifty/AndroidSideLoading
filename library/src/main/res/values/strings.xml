@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SideLoading</string>
+    <string name="library_name">File Loader</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 

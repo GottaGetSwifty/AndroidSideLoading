@@ -12,12 +12,12 @@ import android.widget.TextView;
 
 import java.io.File;
 
-import ar.com.daidalos.afiledialog.FileChooserDialog;
 import com.github.peejweej.androidsideloading.R;
 import com.github.peejweej.androidsideloading.fragments.SideLoadTypeChoosingFragment;
 import com.github.peejweej.androidsideloading.model.SideLoadInformation;
 import com.github.peejweej.androidsideloading.model.SideLoadType;
 import com.github.peejweej.androidsideloading.wifiDirect.WiFiDirectActivity;
+import com.github.peejweej.fileexplorer.FileChooserDialog;
 
 public class SideLoadActivity extends BaseActivity implements SideLoadTypeChoosingFragment.SideLoadTypeFragmentListener{
 
@@ -85,7 +85,7 @@ public class SideLoadActivity extends BaseActivity implements SideLoadTypeChoosi
     }
 
     private void startSDCardLoadAction(){
-        loadStorage("/" + getString(R.string.app_name));
+        loadStorage("/" + getString(R.string.library_name));
     }
 
     private void loadStorage(String optionalDir){

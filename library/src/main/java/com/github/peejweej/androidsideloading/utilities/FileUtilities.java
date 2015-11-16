@@ -122,7 +122,7 @@ public class FileUtilities {
 
         clearTemporaryFiles(context);
         String directory = Environment.getExternalStorageDirectory().getAbsolutePath()
-                + "/" + context.getString(R.string.app_name) + "/temp";
+                + "/" + context.getString(R.string.library_name) + "/temp";
 
         return saveFile(bytes, directory, fileName);
     }
@@ -130,7 +130,7 @@ public class FileUtilities {
     public static void clearTemporaryFiles(Context context){
 
         File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath()
-                + "/" + context.getString(R.string.app_name) + "/temp");
+                + "/" + context.getString(R.string.library_name) + "/temp");
         if(file.exists()){
             final File to = new File(file.getAbsolutePath());
             boolean success = file.renameTo(to);
@@ -162,7 +162,7 @@ public class FileUtilities {
 
     public static void saveFileToSdCard(Context context, byte[] bytes, String fileName){
         String fileDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/"
-                + context.getString(R.string.app_name);
+                + context.getString(R.string.library_name);
         saveFile(bytes, fileDir, fileName);
     }
 

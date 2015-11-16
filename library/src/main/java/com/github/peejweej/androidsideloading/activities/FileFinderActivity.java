@@ -36,7 +36,7 @@ public class FileFinderActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_file_finder);
         info = (SideLoadInformation) getIntent().getSerializableExtra(LOAD_INFO_PARAM);
-        setupToolbar(false, getString(R.string.app_name), false);
+        setupToolbar(false, getString(R.string.library_name), false);
         filesMap = new HashMap<String, File>();
         setupViews();
         searchFiles();
