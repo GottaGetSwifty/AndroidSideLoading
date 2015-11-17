@@ -31,8 +31,8 @@
     <string name="choose_file_title">Choose File</string>
     <string name="external_storage_title">External Storage</string>
 
-    <string name="bluetooth_directions_text">Now on the other device:\n1. Accept the incoming file\n2. Open the file\n3. Select unfoldingWord to open the file\n</string>
-    <string name="bluetooth_turn_on_message">Turn on bluetooth on both devices.</string>
+    <!--<string name="bluetooth_directions_text">Now \n2. Open the file\n3. Select unfoldingWord to open the file\n</string>-->
+    <string name="bluetooth_turn_on_message">1. Turn on bluetooth on both devices\n\2. On the other device, Accept the incoming file and open the file with unfoldingWord</string>
     <string name="title_activity_side_share">SideShareActivity</string>
 
     <string name="nfc_load_title">NFC</string>

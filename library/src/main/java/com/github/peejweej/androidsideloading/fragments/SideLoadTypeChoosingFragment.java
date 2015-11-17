@@ -2,6 +2,7 @@ package com.github.peejweej.androidsideloading.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import com.github.peejweej.androidsideloading.R;
 import com.github.peejweej.androidsideloading.adapters.ShareAdapter;
 import com.github.peejweej.androidsideloading.model.SideLoadInformation;
 import com.github.peejweej.androidsideloading.model.SideLoadType;
+import com.github.peejweej.androidsideloading.utilities.ShareManager;
 
 
 /**
@@ -25,7 +27,7 @@ public class SideLoadTypeChoosingFragment extends Fragment {
     private ShareAdapter adapter;
 
     private SideLoadInformation info;
-
+    private ShareManager shareManager;
     SideLoadTypeFragmentListener listener;
 
     public static SideLoadTypeChoosingFragment constructFragment(SideLoadInformation info){
@@ -50,7 +52,8 @@ public class SideLoadTypeChoosingFragment extends Fragment {
         if(getArguments() != null) {
             this.info = (SideLoadInformation) getArguments().getSerializable(INFO_PARAM);
         }
-        listener = (SideLoadTypeFragmentListener) getActivity();
+        shareManager = new ShareManager((ActionBarActivity) getActivity(), info);
+        listener = shareManager;
     }
 
     @Override
