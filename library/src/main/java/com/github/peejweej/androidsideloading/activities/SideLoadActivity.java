@@ -10,9 +10,10 @@ import android.widget.TextView;
 
 import com.github.peejweej.androidsideloading.R;
 import com.github.peejweej.androidsideloading.fragments.SideLoadTypeChoosingFragment;
+import com.github.peejweej.androidsideloading.fragments.TypeChoosingFragment;
 import com.github.peejweej.androidsideloading.model.SideLoadInformation;
 
-public class SideLoadActivity extends BaseActivity implements SideLoadTypeChoosingFragment.ChoosingFragmentListener {
+public class SideLoadActivity extends BaseActivity implements SideLoadTypeChoosingFragment.SideLoadChoosingFragmentListener {
 
     public static final String FILE_TEXT_PARAM = "FILE_TEXT_PARAM";
 
@@ -28,7 +29,7 @@ public class SideLoadActivity extends BaseActivity implements SideLoadTypeChoosi
 
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragment_container, SideLoadTypeChoosingFragment
-                        .constructFragment(sideLoadInformation, false))
+                        .constructFragment(sideLoadInformation, this))
                 .commit();
     }
 

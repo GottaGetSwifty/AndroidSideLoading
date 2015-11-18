@@ -1,27 +1,11 @@
 package com.github.peejweej.androidsideloading.activities;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.ComponentName;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.view.View;
-import android.widget.TextView;
-
-import java.io.File;
-import java.io.UnsupportedEncodingException;
 
 import com.github.peejweej.androidsideloading.R;
-import com.github.peejweej.androidsideloading.file.FileChooserDialog;
-import com.github.peejweej.androidsideloading.fragments.SideLoadTypeChoosingFragment;
+import com.github.peejweej.androidsideloading.fragments.TypeChoosingFragment;
 import com.github.peejweej.androidsideloading.model.SideLoadInformation;
-import com.github.peejweej.androidsideloading.model.SideLoadType;
-import com.github.peejweej.androidsideloading.utilities.FileUtilities;
 import com.github.peejweej.androidsideloading.utilities.ShareManager;
-import com.github.peejweej.androidsideloading.wifiDirect.WiFiDirectActivity;
 
 public class SideShareActivity extends BaseActivity{
 
@@ -38,8 +22,8 @@ public class SideShareActivity extends BaseActivity{
         sideLoadInformation = (SideLoadInformation) getIntent().getSerializableExtra(SIDE_LOAD_INFORMATION_PARAM);
 
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragment_container, SideLoadTypeChoosingFragment
-                        .constructFragment(sideLoadInformation, true))
+                .add(R.id.fragment_container, TypeChoosingFragment
+                        .constructFragment(sideLoadInformation))
                 .commit();
 
     }

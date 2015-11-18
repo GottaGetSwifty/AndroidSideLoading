@@ -21,7 +21,7 @@
         >
 
         <fragment
-            class="peejweej.sideloading.wifiDirect.DeviceListFragment"
+            class="com.github.peejweej.androidsideloading.wifiDirect.DeviceListFragment"
             android:id="@+id/frag_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -32,7 +32,7 @@
 
         <fragment
             android:layout_alignParentBottom="true"
-            class="peejweej.sideloading.wifiDirect.DeviceDetailFragment"
+            class="com.github.peejweej.androidsideloading.wifiDirect.DeviceDetailFragment"
             android:id="@+id/frag_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

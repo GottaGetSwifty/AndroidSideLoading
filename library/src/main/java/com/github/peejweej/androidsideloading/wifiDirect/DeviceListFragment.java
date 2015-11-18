@@ -57,6 +57,9 @@ public class DeviceListFragment extends ListFragment implements PeerListListener
     private TextView statusTextView;
 
 
+    public DeviceListFragment() {
+    }
+
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);

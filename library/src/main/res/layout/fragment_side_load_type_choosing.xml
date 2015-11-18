@@ -3,17 +3,36 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".SideLoadActivityFragment"
-    android:background="#fff">
-
+    android:background="#fff"
+    android:layout_margin="20dp">
 
     <GridView
-        android:layout_alignParentBottom="true"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:layout_below="@+id/choosing_title"
         android:numColumns="3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/side_load_list_view">
+        android:id="@+id/side_load_list_view"
+        android:horizontalSpacing="5dp"
+        android:verticalSpacing="5dp">
     </GridView>
+
+    <TextView
+        android:textColor="#fff"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:gravity="center"
+        android:background="#bbb"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Choose Method"
+        android:id="@+id/choosing_title"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        />
 
 </RelativeLayout>

@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
@@ -16,7 +17,7 @@ import com.github.peejweej.androidsideloading.activities.AnimationParadigm;
 import com.github.peejweej.androidsideloading.activities.FileFinderActivity;
 import com.github.peejweej.androidsideloading.file.FileChooserDialog;
 import com.github.peejweej.androidsideloading.fragments.LoadingFragment;
-import com.github.peejweej.androidsideloading.fragments.SideLoadTypeChoosingFragment;
+import com.github.peejweej.androidsideloading.fragments.TypeChoosingFragment;
 import com.github.peejweej.androidsideloading.model.SideLoadInformation;
 import com.github.peejweej.androidsideloading.model.SideLoadType;
 import com.github.peejweej.androidsideloading.wifiDirect.WiFiDirectActivity;
@@ -26,15 +27,15 @@ import java.io.File;
 /**
  * Created by Fechner on 11/17/15.
  */
-public class LoadManager implements SideLoadTypeChoosingFragment.TypeChosenListener {
+public class LoadManager implements TypeChoosingFragment.TypeChosenListener {
 
     private LoadingFragment loadingFragment;
-    private ActionBarActivity activity;
+    private AppCompatActivity activity;
     private SideLoadInformation sideLoadInformation;
 
     private LoadManagerListener listener;
 
-    public LoadManager(ActionBarActivity activity, SideLoadInformation sideLoadInformation, LoadManagerListener listener) {
+    public LoadManager(AppCompatActivity activity, SideLoadInformation sideLoadInformation, LoadManagerListener listener) {
         this.activity = activity;
         this.sideLoadInformation = sideLoadInformation;
         this.listener = listener;
@@ -69,6 +70,7 @@ public class LoadManager implements SideLoadTypeChoosingFragment.TypeChosenListe
 
         Intent intent = new Intent(getApplicationContext(), WiFiDirectActivity.class);
         activity.startActivity(intent);
+        listener.finished();
     }
 
     private void startAutoFindAction(){
@@ -78,6 +80,7 @@ public class LoadManager implements SideLoadTypeChoosingFragment.TypeChosenListe
         activity.startActivityForResult(new Intent(getApplicationContext(), FileFinderActivity.class)
                 .putExtra(FileFinderActivity.LOAD_INFO_PARAM, sideLoadInformation), 0);
         activity.overridePendingTransition(enterAnimation, closeAnimation);
+        listener.finished();
     }
 
     private void startStorageLoadAction(){
@@ -109,6 +112,7 @@ public class LoadManager implements SideLoadTypeChoosingFragment.TypeChosenListe
             }
         });
         dialog.show();
+        listener.finished();
     }
 
 //    private Uri finishWithFile(Uri fileUri){
@@ -145,7 +149,7 @@ public class LoadManager implements SideLoadTypeChoosingFragment.TypeChosenListe
 
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-//                        onBackPressed(true);
+                        listener.finished();
                     }
                 })
                 .show();
@@ -193,6 +197,7 @@ public class LoadManager implements SideLoadTypeChoosingFragment.TypeChosenListe
     public interface LoadManagerListener {
         void finishWithFile(Uri fileUri);
         void finishWithText(String text);
+        void finished();
     }
 
     static public Uri getUriFromActivityResult(int requestCode, int resultCode, Intent data, SideLoadInformation information) {

@@ -9,13 +9,14 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
 import com.github.peejweej.androidsideloading.R;
 import com.github.peejweej.androidsideloading.file.FileChooserDialog;
 import com.github.peejweej.androidsideloading.fragments.LoadingFragment;
-import com.github.peejweej.androidsideloading.fragments.SideLoadTypeChoosingFragment;
+import com.github.peejweej.androidsideloading.fragments.TypeChoosingFragment;
 import com.github.peejweej.androidsideloading.model.SideLoadInformation;
 import com.github.peejweej.androidsideloading.model.SideLoadType;
 import com.github.peejweej.androidsideloading.wifiDirect.WiFiDirectActivity;
@@ -26,13 +27,15 @@ import java.io.UnsupportedEncodingException;
 /**
  * Created by Fechner on 11/17/15.
  */
-public class ShareManager implements SideLoadTypeChoosingFragment.TypeChosenListener {
+public class ShareManager implements TypeChoosingFragment.TypeChosenListener {
 
     private LoadingFragment loadingFragment;
-    private ActionBarActivity activity;
+    private AppCompatActivity activity;
     private SideLoadInformation sideLoadInformation;
+    private ShareManagerListener listener;
 
-    public ShareManager(ActionBarActivity activity, SideLoadInformation sideLoadInformation) {
+    public ShareManager(AppCompatActivity activity, SideLoadInformation sideLoadInformation, ShareManagerListener listener) {
+        this.listener = listener;
         this.activity = activity;
         this.sideLoadInformation = sideLoadInformation;
     }
@@ -97,6 +100,7 @@ public class ShareManager implements SideLoadTypeChoosingFragment.TypeChosenList
         sharingIntent.setType("text/plain");
         sharingIntent.putExtra(Intent.EXTRA_STREAM, fileUri);
         activity.startActivity(sharingIntent);
+        listener.finished();
     }
 
     private void startBluetoothShareAction(){
@@ -118,6 +122,7 @@ public class ShareManager implements SideLoadTypeChoosingFragment.TypeChosenList
                     }
                 }).create();
         dialogue.show();
+        listener.finished();
     }
 
     private void openBluetoothSharing(){
@@ -133,6 +138,7 @@ public class ShareManager implements SideLoadTypeChoosingFragment.TypeChosenList
                         "com.android.bluetooth.opp.BluetoothOppLauncherActivity"));
         sharingIntent.putExtra(Intent.EXTRA_STREAM, fileUri);
         activity.startActivity(sharingIntent);
+        listener.finished();
     }
 
 //    @Override
@@ -169,7 +175,7 @@ public class ShareManager implements SideLoadTypeChoosingFragment.TypeChosenList
 //                        "com.android.nfc.opp.BeamShareActivity"));
         sharingIntent.putExtra(Intent.EXTRA_STREAM, fileUri);
         activity.startActivity(sharingIntent);
-
+        listener.finished();
     }
 
     private void startWIFIShareAction(){
@@ -179,6 +185,7 @@ public class ShareManager implements SideLoadTypeChoosingFragment.TypeChosenList
         Intent intent = new Intent(getApplicationContext(), WiFiDirectActivity.class)
                 .setData(fileUri);
         activity.startActivity(intent);
+        listener.finished();
     }
 
     private void startStorageShareAction(){
@@ -200,6 +207,7 @@ public class ShareManager implements SideLoadTypeChoosingFragment.TypeChosenList
         dialog.setFolderMode(true);
         dialog.setShowConfirmation(true, false);
         dialog.show();
+        listener.finished();
     }
 
     private void saveToFile(File folder){
@@ -232,6 +240,7 @@ public class ShareManager implements SideLoadTypeChoosingFragment.TypeChosenList
         String fileDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/"
                 + getApplicationContext().getString(R.string.library_name);
         showSuccessAlert(true, fileDir);
+        listener.finished();
     }
 
     private void showSuccessAlert(boolean success, String filePath){
@@ -245,7 +254,7 @@ public class ShareManager implements SideLoadTypeChoosingFragment.TypeChosenList
                 .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-                        activity.onBackPressed();
+                        listener.finished();
                     }
                 })
                 .show();
@@ -288,5 +297,9 @@ public class ShareManager implements SideLoadTypeChoosingFragment.TypeChosenList
                 }
             }
         });
+    }
+
+    public interface ShareManagerListener{
+        void finished();
     }
 }
