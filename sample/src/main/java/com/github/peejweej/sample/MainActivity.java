@@ -19,4 +19,10 @@ public class MainActivity extends AppCompatActivity {
     public void shareClicked(View view) {
         startActivity(SharingHelper.getIntentForSharing(getApplicationContext()));
     }
+
+    public void shareFragmentClicked(View view) {
+    }
+
+    public void loadFragmentClicked(View view) {
+    }
 }

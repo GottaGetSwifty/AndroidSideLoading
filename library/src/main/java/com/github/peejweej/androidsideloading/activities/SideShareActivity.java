@@ -39,7 +39,7 @@ public class SideShareActivity extends BaseActivity{
 
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragment_container, SideLoadTypeChoosingFragment
-                        .constructFragment(sideLoadInformation))
+                        .constructFragment(sideLoadInformation, true))
                 .commit();
 
     }

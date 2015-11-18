@@ -1,5 +1,7 @@
 package com.github.peejweej.androidsideloading.fragments;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
@@ -13,47 +15,65 @@ import com.github.peejweej.androidsideloading.R;
 import com.github.peejweej.androidsideloading.adapters.ShareAdapter;
 import com.github.peejweej.androidsideloading.model.SideLoadInformation;
 import com.github.peejweej.androidsideloading.model.SideLoadType;
+import com.github.peejweej.androidsideloading.utilities.LoadManager;
 import com.github.peejweej.androidsideloading.utilities.ShareManager;
 
 
-/**
- * A placeholder fragment containing a simple view.
- */
 public class SideLoadTypeChoosingFragment extends Fragment {
 
     private static final String INFO_PARAM = "INFO";
+    private static final String IS_SHARING_PARAM = "IS_SHARING_PARAM";
 
     private GridView gridView;
     private ShareAdapter adapter;
 
+    private boolean isSharing;
     private SideLoadInformation info;
-    private ShareManager shareManager;
-    SideLoadTypeFragmentListener listener;
+    private TypeChosenListener typeChosenListener;
+    private ChoosingFragmentListener fragmentListener;
 
-    public static SideLoadTypeChoosingFragment constructFragment(SideLoadInformation info){
+    public static SideLoadTypeChoosingFragment constructFragment(SideLoadInformation info, boolean isSharing){
 
         SideLoadTypeChoosingFragment fragment = new SideLoadTypeChoosingFragment();
 
         if(info != null) {
             Bundle extras = new Bundle();
             extras.putSerializable(INFO_PARAM, info);
+            extras.putBoolean(IS_SHARING_PARAM, isSharing);
             fragment.setArguments(extras);
         }
-
         return fragment;
     }
 
     public SideLoadTypeChoosingFragment() {
+
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if(getArguments() != null) {
+            this.fragmentListener = (ChoosingFragmentListener) getActivity();
             this.info = (SideLoadInformation) getArguments().getSerializable(INFO_PARAM);
+            isSharing = getArguments().getBoolean(IS_SHARING_PARAM);
         }
-        shareManager = new ShareManager((ActionBarActivity) getActivity(), info);
-        listener = shareManager;
+
+        if(isSharing) {
+            typeChosenListener = new ShareManager((ActionBarActivity) getActivity(), info);
+        }
+        else{
+            typeChosenListener = new LoadManager((ActionBarActivity) getActivity(), info, new LoadManager.LoadManagerListener() {
+                @Override
+                public void finishWithFile(Uri fileUri) {
+                    fragmentListener.finishWithFile(fileUri);
+                }
+
+                @Override
+                public void finishWithText(String text) {
+                    fragmentListener.finishWithText(text);
+                }
+            });
+        }
     }
 
     @Override
@@ -81,11 +101,19 @@ public class SideLoadTypeChoosingFragment extends Fragment {
     }
 
     private void selectedType(SideLoadType type){
-        listener.typeWasChosen(type);
+        typeChosenListener.typeWasChosen(type);
     }
 
-    public interface SideLoadTypeFragmentListener{
+    public interface TypeChosenListener {
         void typeWasChosen(SideLoadType type);
     }
 
+    public interface ChoosingFragmentListener{
+        void finishWithFile(Uri file);
+        void finishWithText(String text);
+    }
+
+    static public Uri getUriFromActivityResult(int requestCode, int resultCode, Intent data, SideLoadInformation information) {
+        return LoadManager.getUriFromActivityResult(requestCode, resultCode, data, information);
+    }
 }

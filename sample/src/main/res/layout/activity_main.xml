@@ -15,8 +15,24 @@
         android:layout_margin="50dp"
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:text="Show Load Fragment"
+        android:onClick="loadFragmentClicked"/>
+
+    <Button
+        android:layout_margin="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
         android:text="Share"
         android:onClick="shareClicked"/>
+
+    <Button
+        android:layout_margin="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Show Share Fragment"
+        android:onClick="shareFragmentClicked"/>
+
+
 
 
 </LinearLayout>

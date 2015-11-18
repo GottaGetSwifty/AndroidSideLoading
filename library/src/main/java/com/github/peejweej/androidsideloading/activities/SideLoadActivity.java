@@ -1,25 +1,18 @@
 package com.github.peejweej.androidsideloading.activities;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.View;
 import android.widget.TextView;
 
-import java.io.File;
-
 import com.github.peejweej.androidsideloading.R;
-import com.github.peejweej.androidsideloading.file.FileChooserDialog;
 import com.github.peejweej.androidsideloading.fragments.SideLoadTypeChoosingFragment;
 import com.github.peejweej.androidsideloading.model.SideLoadInformation;
-import com.github.peejweej.androidsideloading.model.SideLoadType;
-import com.github.peejweej.androidsideloading.wifiDirect.WiFiDirectActivity;
 
-public class SideLoadActivity extends BaseActivity implements SideLoadTypeChoosingFragment.SideLoadTypeFragmentListener{
+public class SideLoadActivity extends BaseActivity implements SideLoadTypeChoosingFragment.ChoosingFragmentListener {
 
     public static final String FILE_TEXT_PARAM = "FILE_TEXT_PARAM";
 
@@ -35,7 +28,7 @@ public class SideLoadActivity extends BaseActivity implements SideLoadTypeChoosi
 
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragment_container, SideLoadTypeChoosingFragment
-                        .constructFragment(sideLoadInformation))
+                        .constructFragment(sideLoadInformation, false))
                 .commit();
     }
 
@@ -44,86 +37,11 @@ public class SideLoadActivity extends BaseActivity implements SideLoadTypeChoosi
         return AnimationParadigm.ANIMATION_FORWARD_RIGHT_BACK_DOWN;
     }
 
-    public void typeWasChosen(SideLoadType type) {
-
-        switch (type){
-            case SIDE_LOAD_TYPE_WIFI:
-                startWIFILoadAction();
-                break;
-            case SIDE_LOAD_TYPE_FILE:
-            case SIDE_LOAD_TYPE_STORAGE:
-                startStorageLoadAction();
-                break;
-            case SIDE_LOAD_TYPE_SD_CARD:
-                startSDCardLoadAction();
-                break;
-            case SIDE_LOAD_TYPE_AUTO_FIND:
-                startAutoFindAction();
-                break;
-            default:
-                break;
-        }
-    }
-
-    private void startWIFILoadAction(){
-
-        Intent intent = new Intent(getApplicationContext(), WiFiDirectActivity.class);
-        startActivity(intent);
-    }
-
-    private void startAutoFindAction(){
-        int enterAnimation = AnimationParadigm.getNextAnimationEnter(getAnimationParadigm());
-        int closeAnimation = AnimationParadigm.getNextAnimationExit(getAnimationParadigm());
-
-        startActivityForResult(new Intent(getApplicationContext(), FileFinderActivity.class)
-                .putExtra(FileFinderActivity.LOAD_INFO_PARAM, sideLoadInformation), 0);
-        overridePendingTransition(enterAnimation, closeAnimation);
-    }
-
-    private void startStorageLoadAction(){
-        loadStorage(null);
-    }
-
-    private void startSDCardLoadAction(){
-        loadStorage("/" + getString(R.string.library_name));
-    }
-
-    private void loadStorage(String optionalDir){
-
-        String finalDir = Environment.getExternalStorageDirectory().getPath();
-        if(optionalDir != null && new File(finalDir + optionalDir).exists()){
-            finalDir += optionalDir;
-        }
-        FileChooserDialog dialog = new FileChooserDialog(this, finalDir);
-        dialog.setFilter(".*" + sideLoadInformation.fileExtension);
-        dialog.addListener(new FileChooserDialog.OnFileSelectedListener() {
-
-            public void onFileSelected(Dialog source, File file) {
-                finishWithFile(Uri.fromFile(file));
-                source.dismiss();
-            }
-
-            public void onFileSelected(Dialog source, File folder, String name) {
-                finishWithFile(Uri.fromFile(new File(folder.getAbsolutePath() + name)));
-                source.dismiss();
-            }
-        });
-        dialog.show();
-    }
-
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    public void finishWithFile(Uri file) {
 
-        if(requestCode == resultCode && data != null && data.getData() != null){
-            finishWithFile(data.getData());
-        }
-    }
-
-    private void finishWithFile(Uri fileUri){
-
-        if(sideLoadInformation.fileVerifier != null && sideLoadInformation.fileVerifier.fileIsValid(fileUri)){
-            setResult(0, new Intent(getApplicationContext(), SideLoadActivity.class).setData(fileUri));
+        if(sideLoadInformation.fileVerifier != null && sideLoadInformation.fileVerifier.fileIsValid(file)){
+            setResult(0, new Intent(getApplicationContext(), SideLoadActivity.class).setData(file));
             handleBack();
         }
         else {
@@ -131,7 +49,8 @@ public class SideLoadActivity extends BaseActivity implements SideLoadTypeChoosi
         }
     }
 
-    private void finishWithText(String text){
+    @Override
+    public void finishWithText(String text) {
 
         if(sideLoadInformation.fileVerifier != null && sideLoadInformation.fileVerifier.fileIsValid(text)){
             showFailureAlert();
@@ -142,6 +61,104 @@ public class SideLoadActivity extends BaseActivity implements SideLoadTypeChoosi
         }
     }
 
+    //    public void typeWasChosen(SideLoadType type) {
+//
+//        switch (type){
+//            case SIDE_LOAD_TYPE_WIFI:
+//                startWIFILoadAction();
+//                break;
+//            case SIDE_LOAD_TYPE_FILE:
+//            case SIDE_LOAD_TYPE_STORAGE:
+//                startStorageLoadAction();
+//                break;
+//            case SIDE_LOAD_TYPE_SD_CARD:
+//                startSDCardLoadAction();
+//                break;
+//            case SIDE_LOAD_TYPE_AUTO_FIND:
+//                startAutoFindAction();
+//                break;
+//            default:
+//                break;
+//        }
+//    }
+//
+//    private void startWIFILoadAction(){
+//
+//        Intent intent = new Intent(getApplicationContext(), WiFiDirectActivity.class);
+//        startActivity(intent);
+//    }
+//
+//    private void startAutoFindAction(){
+//        int enterAnimation = AnimationParadigm.getNextAnimationEnter(getAnimationParadigm());
+//        int closeAnimation = AnimationParadigm.getNextAnimationExit(getAnimationParadigm());
+//
+//        startActivityForResult(new Intent(getApplicationContext(), FileFinderActivity.class)
+//                .putExtra(FileFinderActivity.LOAD_INFO_PARAM, sideLoadInformation), 0);
+//        overridePendingTransition(enterAnimation, closeAnimation);
+//    }
+//
+//    private void startStorageLoadAction(){
+//        loadStorage(null);
+//    }
+//
+//    private void startSDCardLoadAction(){
+//        loadStorage("/" + getString(R.string.library_name));
+//    }
+//
+//    private void loadStorage(String optionalDir){
+//
+//        String finalDir = Environment.getExternalStorageDirectory().getPath();
+//        if(optionalDir != null && new File(finalDir + optionalDir).exists()){
+//            finalDir += optionalDir;
+//        }
+//        FileChooserDialog dialog = new FileChooserDialog(this, finalDir);
+//        dialog.setFilter(".*" + sideLoadInformation.fileExtension);
+//        dialog.addListener(new FileChooserDialog.OnFileSelectedListener() {
+//
+//            public void onFileSelected(Dialog source, File file) {
+//                finishWithFile(Uri.fromFile(file));
+//                source.dismiss();
+//            }
+//
+//            public void onFileSelected(Dialog source, File folder, String name) {
+//                finishWithFile(Uri.fromFile(new File(folder.getAbsolutePath() + name)));
+//                source.dismiss();
+//            }
+//        });
+//        dialog.show();
+//    }
+//
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//        if(requestCode == resultCode && data != null && data.getData() != null){
+//            finishWithFile(data.getData());
+//        }
+//    }
+//
+//    private void finishWithFile(Uri fileUri){
+//
+//        if(sideLoadInformation.fileVerifier != null && sideLoadInformation.fileVerifier.fileIsValid(fileUri)){
+//            setResult(0, new Intent(getApplicationContext(), SideLoadActivity.class).setData(fileUri));
+//            handleBack();
+//        }
+//        else {
+//            showFailureAlert();
+//        }
+//    }
+//
+//    private void finishWithText(String text){
+//
+//        if(sideLoadInformation.fileVerifier != null && sideLoadInformation.fileVerifier.fileIsValid(text)){
+//            showFailureAlert();
+//        }
+//        else {
+//            setResult(0, new Intent(getApplicationContext(), SideLoadActivity.class).putExtra(FILE_TEXT_PARAM, text));
+//            handleBack();
+//        }
+//    }
+//
     private void showFailureAlert(){
 
         setLoadingFragmentVisibility(false, "", false);

@@ -26,14 +26,6 @@ public class SideLoadInformation implements Serializable{
         this.fileUriString = fileUri.getPath();
     }
 
-    public int describeContents() {
-        return 0;
-    }
-
-    public void writeToParcel(Parcel dest, int flags) {
-
-    }
-
     public Uri getUri(){
         return Uri.parse(fileUriString);
     }

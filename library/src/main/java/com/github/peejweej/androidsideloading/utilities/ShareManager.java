@@ -1,6 +1,5 @@
 package com.github.peejweej.androidsideloading.utilities;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ComponentName;
@@ -27,7 +26,7 @@ import java.io.UnsupportedEncodingException;
 /**
  * Created by Fechner on 11/17/15.
  */
-public class ShareManager implements SideLoadTypeChoosingFragment.SideLoadTypeFragmentListener {
+public class ShareManager implements SideLoadTypeChoosingFragment.TypeChosenListener {
 
     private LoadingFragment loadingFragment;
     private ActionBarActivity activity;
@@ -36,6 +35,10 @@ public class ShareManager implements SideLoadTypeChoosingFragment.SideLoadTypeFr
     public ShareManager(ActionBarActivity activity, SideLoadInformation sideLoadInformation) {
         this.activity = activity;
         this.sideLoadInformation = sideLoadInformation;
+    }
+
+    private Context getApplicationContext(){
+        return activity.getApplicationContext();
     }
 
     public void typeWasChosen(SideLoadType type) {
@@ -83,10 +86,6 @@ public class ShareManager implements SideLoadTypeChoosingFragment.SideLoadTypeFr
                 return null;
             }
         }
-    }
-
-    private Context getApplicationContext(){
-        return activity.getApplicationContext();
     }
 
     private void startShareOtherAction(){
