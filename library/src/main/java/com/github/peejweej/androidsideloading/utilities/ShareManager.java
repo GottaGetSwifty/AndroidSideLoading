@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Environment;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -21,8 +22,17 @@ import com.github.peejweej.androidsideloading.model.SideLoadInformation;
 import com.github.peejweej.androidsideloading.model.SideLoadType;
 import com.github.peejweej.androidsideloading.wifiDirect.WiFiDirectActivity;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.Enumeration;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
+import java.util.zip.ZipOutputStream;
 
 /**
  * Created by Fechner on 11/17/15.
@@ -212,7 +222,82 @@ public class ShareManager implements TypeChoosingFragment.TypeChosenListener {
 
     private void saveToFile(File folder){
 
+        unzipFiles(new File(sideLoadInformation.getUri().getPath()), folder);
         FileUtilities.saveFile(getFileBytes(), folder.getPath(), sideLoadInformation.fileName);
+    }
+
+    private void unzipFiles(File archive, File newFile){
+        try {
+            ZipFile zipfile = new ZipFile(archive);
+            int entries = zipfile.size();
+            int total = 0;
+
+            for (Enumeration<?> e = zipfile.entries(); e.hasMoreElements();) {
+                ZipEntry entry = (ZipEntry) e.nextElement();
+                unzipEntry(zipfile, entry, newFile);
+            }
+            zipfile.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void unzipEntry(ZipFile zipfile, ZipEntry entry,
+                            File outputDir) throws IOException {
+
+//        if (entry.isDirectory()) {
+//            outputDir.mkdirs();
+//            createDir(new File(outputDir, entry.getName()));
+//            return;
+//        }
+
+        File outputFile = new File(outputDir, entry.getName());
+        if (!outputFile.exists()) {
+            outputFile.createNewFile();
+        }
+
+        BufferedInputStream inputStream = new
+                BufferedInputStream(zipfile
+                .getInputStream(entry));
+        BufferedOutputStream outputStream = new BufferedOutputStream(
+                new FileOutputStream(outputFile));
+
+        try{
+            copy(inputStream, outputStream);
+        }
+        finally{
+            outputStream.close();
+            inputStream.close();
+        }
+    }
+
+    public static int copy(BufferedInputStream in, BufferedOutputStream out) {
+        byte[] buffer = new byte[1024];
+
+        int count = 0, n = 0;
+        try {
+            while ((n = in.read(buffer, 0, 1024)) != (-1)) {
+                out.write(buffer, 0, n);
+                count += n;
+            }
+            out.flush();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            try {
+                out.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                in.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return count;
     }
 
     private byte[] getFileBytes(){
