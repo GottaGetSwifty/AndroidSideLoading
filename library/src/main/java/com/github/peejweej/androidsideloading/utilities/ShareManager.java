@@ -223,7 +223,7 @@ public class ShareManager implements TypeChoosingFragment.TypeChosenListener {
     private void saveToFile(File folder){
 
         unzipFiles(new File(sideLoadInformation.getUri().getPath()), folder);
-        FileUtilities.saveFile(getFileBytes(), folder.getPath(), sideLoadInformation.fileName);
+//        FileUtilities.saveFile(getFileBytes(), folder.getPath(), sideLoadInformation.fileName);
     }
 
     private void unzipFiles(File archive, File newFile){
