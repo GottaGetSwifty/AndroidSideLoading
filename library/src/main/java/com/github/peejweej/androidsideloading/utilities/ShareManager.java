@@ -29,6 +29,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.nio.channels.FileChannel;
 import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -222,8 +223,7 @@ public class ShareManager implements TypeChoosingFragment.TypeChosenListener {
 
     private void saveToFile(File folder){
 
-        unzipFiles(new File(sideLoadInformation.getUri().getPath()), folder);
-//        FileUtilities.saveFile(getFileBytes(), folder.getPath(), sideLoadInformation.fileName);
+        copyFile(new File(sideLoadInformation.getUri().getPath()), folder);
     }
 
     private void unzipFiles(File archive, File newFile){
@@ -268,6 +268,19 @@ public class ShareManager implements TypeChoosingFragment.TypeChosenListener {
         finally{
             outputStream.close();
             inputStream.close();
+        }
+    }
+
+    public static void copyFile(File source, File newFile){
+
+        try {
+            FileChannel src = new FileInputStream(source).getChannel();
+            FileChannel dst = new FileOutputStream(newFile).getChannel();
+            dst.transferFrom(src, 0, src.size());
+            src.close();
+            dst.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
     }
 
