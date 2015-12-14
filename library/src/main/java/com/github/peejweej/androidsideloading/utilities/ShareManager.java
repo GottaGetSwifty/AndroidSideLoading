@@ -147,7 +147,8 @@ public class ShareManager implements TypeChoosingFragment.TypeChosenListener {
                 "com.android.bluetooth",
                 "com.android.bluetooth.opp.BluetoothOppLauncherActivity"));
         sharingIntent.setType(MIME_TYPE);
-        sharingIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(fileUri.getPath())));
+        Uri newUri = Uri.fromFile(new File(fileUri.getPath()));
+        sharingIntent.putExtra(Intent.EXTRA_STREAM, newUri);
         activity.startActivity(sharingIntent);
         listener.finished();
     }
