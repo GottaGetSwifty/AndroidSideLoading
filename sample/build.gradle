@@ -16,9 +16,13 @@ android {
     }
     productFlavors {
     }
+
+    repositories {
+        maven { url "https://jitpack.io" }
+    }
 }
 
 dependencies {
-    compile project(':library')
+    compile 'com.github.PeeJWeeJ:AndroidSideLoading:layout_fix3'
     compile 'com.android.support:appcompat-v7:23.1.1'
 }
