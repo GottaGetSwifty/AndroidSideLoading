@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.github.peejweej.androidsideloading.wifiDirect;
+package com.github.peejweej.androidsideloading.activities;
 
 import android.annotation.TargetApi;
 import android.content.BroadcastReceiver;
@@ -42,6 +42,7 @@ import android.widget.Toast;
 import com.github.peejweej.androidsideloading.R;
 import com.github.peejweej.androidsideloading.fragments.DeviceDetailFragment;
 import com.github.peejweej.androidsideloading.fragments.DeviceListFragment;
+import com.github.peejweej.androidsideloading.fragments.wifi.WiFiDirectBroadcastReceiver;
 
 /**
  * An activity that uses WiFi Direct APIs to discover and connect with available

@@ -1,4 +1,4 @@
-package com.github.peejweej.androidsideloading.wifiDirect;
+package com.github.peejweej.androidsideloading.fragments.wifi;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +8,8 @@ import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
+import com.github.peejweej.androidsideloading.activities.WiFiDirectActivity;
 
 import java.io.File;
 import java.io.FileOutputStream;

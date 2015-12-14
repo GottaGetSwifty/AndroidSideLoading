@@ -8,9 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -20,7 +18,7 @@ import com.github.peejweej.androidsideloading.fragments.LoadingFragment;
 import com.github.peejweej.androidsideloading.fragments.TypeChoosingFragment;
 import com.github.peejweej.androidsideloading.model.SideLoadInformation;
 import com.github.peejweej.androidsideloading.model.SideLoadType;
-import com.github.peejweej.androidsideloading.wifiDirect.WiFiDirectActivity;
+import com.github.peejweej.androidsideloading.activities.WiFiDirectActivity;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -33,7 +31,6 @@ import java.nio.channels.FileChannel;
 import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
-import java.util.zip.ZipOutputStream;
 
 /**
  * Created by Fechner on 11/17/15.

@@ -36,9 +36,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.github.peejweej.androidsideloading.R;
-import com.github.peejweej.androidsideloading.wifiDirect.FileServerAsyncTask;
-import com.github.peejweej.androidsideloading.wifiDirect.FileTransferService;
-import com.github.peejweej.androidsideloading.wifiDirect.WiFiDirectActivity;
+import com.github.peejweej.androidsideloading.fragments.wifi.FileServerAsyncTask;
+import com.github.peejweej.androidsideloading.fragments.wifi.FileTransferService;
+import com.github.peejweej.androidsideloading.activities.WiFiDirectActivity;
 
 
 /**

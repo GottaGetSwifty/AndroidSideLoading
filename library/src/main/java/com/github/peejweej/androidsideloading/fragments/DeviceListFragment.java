@@ -34,8 +34,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.github.peejweej.androidsideloading.R;
-import com.github.peejweej.androidsideloading.wifiDirect.WiFiDirectActivity;
-import com.github.peejweej.androidsideloading.wifiDirect.WiFiPeerListAdapter;
+import com.github.peejweej.androidsideloading.activities.WiFiDirectActivity;
+import com.github.peejweej.androidsideloading.fragments.wifi.WiFiPeerListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

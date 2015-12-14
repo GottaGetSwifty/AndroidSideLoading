@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.github.peejweej.androidsideloading.wifiDirect;
+package com.github.peejweej.androidsideloading.fragments.wifi;
 
 import android.annotation.TargetApi;
 import android.content.BroadcastReceiver;
@@ -29,6 +29,7 @@ import android.os.Build;
 import android.util.Log;
 
 import com.github.peejweej.androidsideloading.R;
+import com.github.peejweej.androidsideloading.activities.WiFiDirectActivity;
 import com.github.peejweej.androidsideloading.fragments.DeviceDetailFragment;
 import com.github.peejweej.androidsideloading.fragments.DeviceListFragment;
 

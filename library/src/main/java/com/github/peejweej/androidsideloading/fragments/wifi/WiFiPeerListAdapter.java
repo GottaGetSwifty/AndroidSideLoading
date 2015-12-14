@@ -1,4 +1,4 @@
-package com.github.peejweej.androidsideloading.wifiDirect;
+package com.github.peejweej.androidsideloading.fragments.wifi;
 
 import android.content.Context;
 import android.net.wifi.p2p.WifiP2pDevice;
@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import com.github.peejweej.androidsideloading.R;
+import com.github.peejweej.androidsideloading.activities.WiFiDirectActivity;
 
 /**
  * Array adapter for ListFragment that maintains WifiP2pDevice list.

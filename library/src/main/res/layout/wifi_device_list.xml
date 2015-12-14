@@ -7,14 +7,12 @@
     android:paddingTop="3dp"
     >
 
-
-
     <!-- Self information -->
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="80dp"
-        android:padding="3dip"
+        android:padding="3dp"
         android:background="#ddd">
         <LinearLayout
             android:orientation="vertical"

@@ -1,6 +1,6 @@
 // Copyright 2011 Google Inc. All Rights Reserved.
 
-package com.github.peejweej.androidsideloading.wifiDirect;
+package com.github.peejweej.androidsideloading.fragments.wifi;
 
 import android.app.IntentService;
 import android.content.ContentResolver;
@@ -8,6 +8,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
+
+import com.github.peejweej.androidsideloading.activities.WiFiDirectActivity;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
