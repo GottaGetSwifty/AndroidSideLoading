@@ -40,7 +40,7 @@ import java.util.zip.ZipOutputStream;
  */
 public class ShareManager implements TypeChoosingFragment.TypeChosenListener {
 
-    private static final String MIME_TYPE = "application/octet-stream";
+    private static final String MIME_TYPE = "application/zip";
     private LoadingFragment loadingFragment;
     private AppCompatActivity activity;
     private SideLoadInformation sideLoadInformation;
