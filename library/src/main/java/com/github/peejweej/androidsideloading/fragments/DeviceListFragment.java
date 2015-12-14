@@ -25,11 +25,13 @@ import android.net.wifi.p2p.WifiP2pDeviceList;
 import android.net.wifi.p2p.WifiP2pManager.PeerListListener;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -46,9 +48,9 @@ import java.util.List;
  * parent activity to handle user interaction events
  */
 @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-public class DeviceListFragment extends ListFragment implements PeerListListener {
+public class DeviceListFragment extends Fragment implements PeerListListener {
 
-    private List<WifiP2pDevice> peers = new ArrayList<WifiP2pDevice>();
+    private List<WifiP2pDevice> peers = new ArrayList<>();
     private ProgressDialog progressDialog = null;
     private View mContentView = null;
     private WifiP2pDevice device;
@@ -58,6 +60,7 @@ public class DeviceListFragment extends ListFragment implements PeerListListener
     private TextView nameTextView;
     private TextView statusTextView;
 
+    private ListView listView;
 
     public DeviceListFragment() {
     }
@@ -65,11 +68,9 @@ public class DeviceListFragment extends ListFragment implements PeerListListener
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        this.setListAdapter(new WiFiPeerListAdapter(getActivity(), R.layout.row_devices, peers));
     }
 
     public void setListAdapter(WiFiPeerListAdapter adapter) {
-        super.setListAdapter(adapter);
         this.listAdapter = adapter;
     }
 
@@ -91,14 +92,21 @@ public class DeviceListFragment extends ListFragment implements PeerListListener
 
         nameTextView = (TextView) mContentView.findViewById(R.id.my_name);
         statusTextView = (TextView) mContentView.findViewById(R.id.my_status);
+        listView = (ListView) mContentView.findViewById(R.id.device_list);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                onListItemClick(parent, view, position, id);
+            }
+        });
+        this.setListAdapter(new WiFiPeerListAdapter(getActivity(), R.layout.row_devices, peers));
     }
 
     /**
      * Initiate a connection with the peer.
      */
-    @Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
-        WifiP2pDevice device = (WifiP2pDevice) getListAdapter().getItem(position);
+    public void onListItemClick(AdapterView l, View v, int position, long id) {
+        WifiP2pDevice device = (WifiP2pDevice) listAdapter.getItem(position);
         ((DeviceActionListener) getActivity()).showDetails(device);
     }
 
