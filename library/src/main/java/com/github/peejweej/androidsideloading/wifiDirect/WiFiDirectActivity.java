@@ -40,6 +40,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.github.peejweej.androidsideloading.R;
+import com.github.peejweej.androidsideloading.fragments.DeviceDetailFragment;
+import com.github.peejweej.androidsideloading.fragments.DeviceListFragment;
 
 /**
  * An activity that uses WiFi Direct APIs to discover and connect with available

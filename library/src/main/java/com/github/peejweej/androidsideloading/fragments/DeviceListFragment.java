@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.github.peejweej.androidsideloading.wifiDirect;
+package com.github.peejweej.androidsideloading.fragments;
 
 import android.annotation.TargetApi;
 import android.app.ProgressDialog;
@@ -34,6 +34,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.github.peejweej.androidsideloading.R;
+import com.github.peejweej.androidsideloading.wifiDirect.WiFiDirectActivity;
+import com.github.peejweej.androidsideloading.wifiDirect.WiFiPeerListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,7 +75,7 @@ public class DeviceListFragment extends ListFragment implements PeerListListener
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mContentView = inflater.inflate(R.layout.wifi_device_list, null);
+        mContentView = inflater.inflate(R.layout.wifi_device_list, container, false);
         setupViews();
         return mContentView;
     }

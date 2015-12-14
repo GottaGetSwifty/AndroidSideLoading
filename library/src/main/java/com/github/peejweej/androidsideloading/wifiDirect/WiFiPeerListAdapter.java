@@ -16,7 +16,7 @@ import com.github.peejweej.androidsideloading.R;
 /**
  * Array adapter for ListFragment that maintains WifiP2pDevice list.
  */
-class WiFiPeerListAdapter extends ArrayAdapter<WifiP2pDevice> {
+public class WiFiPeerListAdapter extends ArrayAdapter<WifiP2pDevice> {
 
     private List<WifiP2pDevice> items;
 

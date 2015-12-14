@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.github.peejweej.androidsideloading.wifiDirect;
+package com.github.peejweej.androidsideloading.fragments;
 
 import android.annotation.TargetApi;
 import android.app.ProgressDialog;
@@ -36,6 +36,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.github.peejweej.androidsideloading.R;
+import com.github.peejweej.androidsideloading.wifiDirect.FileServerAsyncTask;
+import com.github.peejweej.androidsideloading.wifiDirect.FileTransferService;
+import com.github.peejweej.androidsideloading.wifiDirect.WiFiDirectActivity;
 
 
 /**

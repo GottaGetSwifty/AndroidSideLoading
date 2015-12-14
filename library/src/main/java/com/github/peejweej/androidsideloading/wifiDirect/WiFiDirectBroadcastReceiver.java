@@ -29,6 +29,8 @@ import android.os.Build;
 import android.util.Log;
 
 import com.github.peejweej.androidsideloading.R;
+import com.github.peejweej.androidsideloading.fragments.DeviceDetailFragment;
+import com.github.peejweej.androidsideloading.fragments.DeviceListFragment;
 
 /**
  * A BroadcastReceiver that notifies of important wifi p2p events.
