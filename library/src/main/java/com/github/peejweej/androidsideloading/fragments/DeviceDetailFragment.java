@@ -63,6 +63,10 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
     private TextView statusTextView;
     private TextView deviceInfoTextView;
 
+
+    public DeviceDetailFragment() {
+    }
+
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -142,7 +146,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
     }
 
     private void disconnect(){
-        ((DeviceListFragment.DeviceActionListener) getActivity()).disconnect();
+        ((DevicesListFragment.DeviceActionListener) getActivity()).disconnect();
     }
 
     public void manageButtons(){
@@ -176,7 +180,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 //                            }
 //                        }
         );
-        ((DeviceListFragment.DeviceActionListener) getActivity()).connect(config);
+        ((DevicesListFragment.DeviceActionListener) getActivity()).connect(config);
     }
 
     public void transferFile(Uri uri){

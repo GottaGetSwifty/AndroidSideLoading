@@ -18,26 +18,20 @@
         android:layout_height="match_parent"
         >
 
-        <fragment
-            class="com.github.peejweej.androidsideloading.fragments.DeviceListFragment"
+        <FrameLayout
+            android:layout_alignParentBottom="true"
+            android:id="@+id/frag_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+        <FrameLayout
             android:id="@+id/frag_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/frag_detail"
-            tools:layout="@layout/wifi_device_list"
-            android:layout_alignParentTop="true">
-        </fragment>
+            android:layout_alignParentTop="true"/>
 
-        <fragment
-            android:layout_alignParentBottom="true"
-            class="com.github.peejweej.androidsideloading.fragments.DeviceDetailFragment"
-            android:id="@+id/frag_detail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:layout="@layout/device_detail"
-
-            >
-        </fragment>
 
     </RelativeLayout>
 

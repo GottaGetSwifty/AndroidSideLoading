@@ -48,7 +48,7 @@ import java.util.List;
  * parent activity to handle user interaction events
  */
 @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-public class DeviceListFragment extends Fragment implements PeerListListener {
+public class DevicesListFragment extends Fragment implements PeerListListener {
 
     private List<WifiP2pDevice> peers = new ArrayList<>();
     private ProgressDialog progressDialog = null;
@@ -62,7 +62,7 @@ public class DeviceListFragment extends Fragment implements PeerListListener {
 
     private ListView listView;
 
-    public DeviceListFragment() {
+    public DevicesListFragment() {
     }
 
     @Override

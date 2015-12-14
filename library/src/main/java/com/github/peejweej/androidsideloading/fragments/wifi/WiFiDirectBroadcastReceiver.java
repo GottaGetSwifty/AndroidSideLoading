@@ -31,7 +31,7 @@ import android.util.Log;
 import com.github.peejweej.androidsideloading.R;
 import com.github.peejweej.androidsideloading.activities.WiFiDirectActivity;
 import com.github.peejweej.androidsideloading.fragments.DeviceDetailFragment;
-import com.github.peejweej.androidsideloading.fragments.DeviceListFragment;
+import com.github.peejweej.androidsideloading.fragments.DevicesListFragment;
 
 /**
  * A BroadcastReceiver that notifies of important wifi p2p events.
@@ -109,7 +109,7 @@ public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
                 activity.resetData();
             }
         } else if (WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION.equals(action)) {
-            DeviceListFragment fragment = (DeviceListFragment) activity.getSupportFragmentManager()
+            DevicesListFragment fragment = (DevicesListFragment) activity.getSupportFragmentManager()
                     .findFragmentById(R.id.frag_list);
             fragment.updateThisDevice((WifiP2pDevice) intent.getParcelableExtra(
                         WifiP2pManager.EXTRA_WIFI_P2P_DEVICE));

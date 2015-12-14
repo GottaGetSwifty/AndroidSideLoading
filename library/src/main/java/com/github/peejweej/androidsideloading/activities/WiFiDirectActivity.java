@@ -41,7 +41,7 @@ import android.widget.Toast;
 
 import com.github.peejweej.androidsideloading.R;
 import com.github.peejweej.androidsideloading.fragments.DeviceDetailFragment;
-import com.github.peejweej.androidsideloading.fragments.DeviceListFragment;
+import com.github.peejweej.androidsideloading.fragments.DevicesListFragment;
 import com.github.peejweej.androidsideloading.fragments.wifi.WiFiDirectBroadcastReceiver;
 
 /**
@@ -52,7 +52,7 @@ import com.github.peejweej.androidsideloading.fragments.wifi.WiFiDirectBroadcast
  * WiFi state related events.
  */
 @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-public class WiFiDirectActivity extends ActionBarActivity implements ChannelListener, DeviceListFragment.DeviceActionListener {
+public class WiFiDirectActivity extends ActionBarActivity implements ChannelListener, DevicesListFragment.DeviceActionListener {
 
     public static final String TAG = "WiFiDirectActivity";
 
@@ -65,7 +65,7 @@ public class WiFiDirectActivity extends ActionBarActivity implements ChannelList
     private BroadcastReceiver receiver = null;
 
     private DeviceDetailFragment fragmentDetails;
-    private DeviceListFragment fragmentList;
+    private DevicesListFragment fragmentList;
 
     private Uri selectedUri;
     /**
@@ -99,11 +99,14 @@ public class WiFiDirectActivity extends ActionBarActivity implements ChannelList
 
     private void setupViews(){
 
-        fragmentList = (DeviceListFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.frag_list);
-
-        fragmentDetails = (DeviceDetailFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.frag_detail);
+        fragmentList = new DevicesListFragment();
+        fragmentDetails = new DeviceDetailFragment();
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.frag_detail, fragmentDetails)
+                .commit();
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.frag_list, fragmentList)
+                .commit();
 
         if(selectedUri == null){
             View view = findViewById(R.id.device_detail_fragment_base_view);
