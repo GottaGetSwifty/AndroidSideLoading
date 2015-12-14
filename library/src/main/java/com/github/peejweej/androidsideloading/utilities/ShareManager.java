@@ -40,6 +40,7 @@ import java.util.zip.ZipOutputStream;
  */
 public class ShareManager implements TypeChoosingFragment.TypeChosenListener {
 
+    private static final String MIME_TYPE = "application/octet-stream";
     private LoadingFragment loadingFragment;
     private AppCompatActivity activity;
     private SideLoadInformation sideLoadInformation;
@@ -108,7 +109,7 @@ public class ShareManager implements TypeChoosingFragment.TypeChosenListener {
 
         Intent sharingIntent = new Intent(
                 Intent.ACTION_SEND);
-        sharingIntent.setType("text/plain");
+        sharingIntent.setType(MIME_TYPE);
         sharingIntent.putExtra(Intent.EXTRA_STREAM, fileUri);
         activity.startActivity(sharingIntent);
         listener.finished();
@@ -142,12 +143,11 @@ public class ShareManager implements TypeChoosingFragment.TypeChosenListener {
 
         Intent sharingIntent = new Intent(
                 Intent.ACTION_SEND);
-        sharingIntent.setType("text/plain");
-        sharingIntent
-                .setComponent(new ComponentName(
-                        "com.android.bluetooth",
-                        "com.android.bluetooth.opp.BluetoothOppLauncherActivity"));
-        sharingIntent.putExtra(Intent.EXTRA_STREAM, fileUri);
+        sharingIntent.setComponent(new ComponentName(
+                "com.android.bluetooth",
+                "com.android.bluetooth.opp.BluetoothOppLauncherActivity"));
+        sharingIntent.setType(MIME_TYPE);
+        sharingIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(fileUri.getPath())));
         activity.startActivity(sharingIntent);
         listener.finished();
     }
@@ -178,7 +178,7 @@ public class ShareManager implements TypeChoosingFragment.TypeChosenListener {
 
         Intent sharingIntent = new Intent(
                 Intent.ACTION_SEND);
-        sharingIntent.setType("text/plain");
+        sharingIntent.setType(MIME_TYPE);
 //        sharingIntent
 //                .setComponent(new ComponentName(
 //                        "com.android.nfchip" +

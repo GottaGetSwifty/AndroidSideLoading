@@ -180,11 +180,11 @@ public class FileUtil {
 
         try {
             File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath()
-                    + "/" + context.getString(R.string.app_name) + "/temp", fileName);
+                    + "/temp", fileName);
 
             if (!file.exists()) {
                 boolean madeDirs = new File(Environment.getExternalStorageDirectory().getAbsolutePath()
-                        + "/" + context.getString(R.string.app_name) + "/temp").mkdirs();
+                        + "/temp").mkdirs();
                 boolean madeFile = file.createNewFile();
             }
             String fileString = fileSequence.toString();
@@ -212,7 +212,7 @@ public class FileUtil {
     public static void clearTemporaryFiles(Context context){
 
         File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath()
-                + "/" + context.getString(R.string.app_name) + "/temp");
+                + "/temp");
         if(file.exists()){
             final File to = new File(file.getAbsolutePath());
             boolean success = file.renameTo(to);

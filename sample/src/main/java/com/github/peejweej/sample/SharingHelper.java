@@ -17,6 +17,8 @@ import com.github.peejweej.androidsideloading.activities.SideShareActivity;
 import com.github.peejweej.androidsideloading.model.SideLoadInformation;
 import com.github.peejweej.androidsideloading.model.SideLoadVerifier;
 
+import java.io.File;
+
 /**
  * Created by Fechner on 8/24/15.
  */
